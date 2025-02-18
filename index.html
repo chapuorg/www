@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界茶叶百科</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0 }
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6 }
+        
+        /* 响应式布局 */
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px }
+        
+        /* 导航系统 */
+        .nav-hierarchy {
+            display: flex;
+            gap: 15px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            margin-bottom: 20px
+        }
+        .nav-item { cursor: pointer; padding: 8px 15px; border-radius: 4px }
+        .nav-item:hover { background: #e0e0e0 }
+        
+        /* 内容展示区 */
+        .tea-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 15px
+        }
+        .tea-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .nav-hierarchy { flex-direction: column }
+            .tea-grid { grid-template-columns: 1fr }
+        }
+    </style>
+</head>
+<body>
+    <header class="container">
+        <h1>🌍 世界茶叶百科</h1>
+        <input type="search" placeholder="搜索茶叶..." style="width:100%; padding:10px; margin:15px 0">
+    </header>
+
+    <nav class="container">
+        <div class="nav-hierarchy">
+            <div class="nav-item" onclick="showContent('asia')">亚洲</div>
+            <div class="nav-item" onclick="showContent('europe')">欧洲</div>
+            <div class="nav-item" onclick="showContent('africa')">非洲</div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- 中国茶示例 -->
+        <div id="asia-content" class="content-section">
+            <h2>中国名茶精选</h2>
+            <div class="tea-grid">
+                <div class="tea-card">
+                    <h3>西湖龙井 [1,3](@ref)</h3>
+                    <p><strong>类别：</strong>绿茶
+
+                    <strong>特点：</strong>扁平挺直，清香持久
+
+                    <strong>历史：</strong>始于宋代，盛于清代
+
+                    <strong>简介：</strong>中国十大名茶之一，具有"色绿、香郁、味甘、形美"四绝</p>
+                </div>
+                <div class="tea-card">
+                    <h3>碧螺春 [1,9](@ref)</h3>
+                    <p><strong>类别：</strong>绿茶
+
+                    <strong>特点：</strong>卷曲似螺，花果香浓郁
+
+                    <strong>历史：</strong>隋唐时期已有记载
+
+                    <strong>简介：</strong>茶吸果香形成的独特风味，有"铜丝条，螺旋形，浑身毛"的美誉</p>
+                </div>
+                <div class="tea-card">
+                    <h3>武夷岩茶 [4,9](@ref)</h3>
+                    <p><strong>类别：</strong>乌龙茶
+
+                    <strong>特点：</strong>岩骨花香，回甘持久
+
+                    <strong>历史：</strong>明代开始制作
+
+                    <strong>简介：</strong>"岩韵"显著，大红袍为其中极品</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 其他大洲内容结构类似... -->
+    </main>
+
+    <footer class="container" style="text-align:center; margin-top:40px; color:#666">
+        <p>© 2025 世界茶叶百科</p>
+    </footer>
+
+    <script>
+        function showContent(continent) {
+            // 此处可扩展交互逻辑
+            console.log(`显示${continent}内容`);
+        }
+    </script>
+</body>
+</html>
