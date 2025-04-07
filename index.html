@@ -3,213 +3,2516 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>世界茶叶图谱</title>
+    <title>中国茶谱 - 茶禅明一味，谱法贯三乘</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0 }
-        body { font-family: '微软雅黑', sans-serif; line-height: 1.8; background: #f5f5f5 }
-        
-        /* 响应式容器 */
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px }
-        
-        /* 四级导航系统 */
-        .nav-level {
-            display: flex;
-            gap: 10px;
-            padding: 15px;
-            background: #fff;
-            border-radius: 8px;
-            margin: 15px 0;
-            flex-wrap: wrap;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei", sans-serif;
         }
-        .nav-item {
-            cursor: pointer;
-            padding: 8px 15px;
-            border-radius: 20px;
-            background: #e9ecef;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .nav-item:hover { background: #dee2e6 }
         
-        /* 茶叶网格布局 */
-        .tea-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #3a5a40;
+            color: white;
             padding: 20px 0;
-        }
-        .tea-card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 25px;
-            border-left: 4px solid #2b8a3e;
-            position: relative;
-        }
-        .tea-card::before {
-            content: "🍵";
-            position: absolute;
-            right: 15px;
-            top: 15px;
-            font-size: 1.5em;
-            opacity: 0.2;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 5px;
         }
         
-        /* 移动端适配 */
-        @media (max-width: 768px) {
-            .nav-level { gap: 8px }
-            .tea-grid { grid-template-columns: 1fr }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
         }
-
-        /* 搜索高亮 */
-        .highlight { background: #fff3cd; padding: 2px 4px }
+        
+        .search-container {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        
+        #search {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .classification {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .province, .city, .county {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .province {
+            background-color: #588157;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .province:hover {
+            background-color: #3a5a40;
+        }
+        
+        .city {
+            background-color: #a3b18a;
+            color: white;
+            padding-left: 40px;
+        }
+        
+        .city:hover {
+            background-color: #588157;
+        }
+        
+        .county {
+            background-color: #f8f9fa;
+            padding-left: 60px;
+        }
+        
+        .county:hover {
+            background-color: #e9ecef;
+        }
+        
+        .content {
+            display: none;
+        }
+        
+        .tea-items {
+            padding: 15px;
+            padding-left: 80px;
+            display: none;
+            background-color: #f8f9fa;
+            flex-wrap: wrap;
+        }
+        
+        .tea-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 8px 15px;
+            margin: 5px;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        
+        .tea-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .arrow {
+            transition: transform 0.3s;
+        }
+        
+        .rotate {
+            transform: rotate(90deg);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #3a5a40;
+            color: white;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .province, .city, .county {
+                padding: 12px 15px;
+            }
+            
+            .city {
+                padding-left: 30px;
+            }
+            
+            .county {
+                padding-left: 45px;
+            }
+            
+            .tea-items {
+                padding-left: 60px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .province, .city, .county {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .city {
+                padding-left: 25px;
+            }
+            
+            .county {
+                padding-left: 35px;
+            }
+            
+            .tea-items {
+                padding-left: 45px;
+            }
+            
+            .tea-item {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header class="container">
-        <h1 style="color: #2b8a3e">🌍 世界茶叶图谱</h1>
-        <input type="search" id="searchInput" placeholder="输入茶叶名称或产地..." 
-               style="width:100%; padding:12px; margin:20px 0; border:2px solid #ced4da; border-radius:25px">
-    </header>
-
-    <!-- 动态导航区 -->
-    <nav class="container">
-        <div class="nav-level" id="大洲导航"></div>
-        <div class="nav-level" id="国家导航"></div>
-        <div class="nav-level" id="产区导航"></div>
-    </nav>
-
-    <main class="container">
-        <div id="内容展示区"></div>
-    </main>
-
-    <footer class="container" style="text-align:center; margin-top:50px; color:#666">
-        <p>© 2025 </p>
-    </footer>
-
-<script>
-// 茶叶数据库（36个品种）
-const 茶叶数据 = {
-    亚洲: {
-        "🇨🇳 中国": {
-            "🌿 浙江产区": [
-                { 
-                    名称: "西湖龙井", 
-                    类别: "绿茶", 
-                    产地细节: "杭州西湖区狮峰山/龙井村", 
-                    特点: "扁平挺直，清香持久，滋味甘醇",
-                    历史: "始于宋代，乾隆钦定十八棵御茶树",
-                    简介: "中国十大名茶之首，具有'四绝'：色绿、香郁、味甘、形美"
-                },
-                {
-                    名称: "安吉白茶",
-                    类别: "绿茶",
-                    产地细节: "湖州市安吉县海拔800米山区",
-                    特点: "白化变异品种，氨基酸含量≥6%",
-                    历史: "1982年发现千年白茶祖",
-                    简介: "形如凤羽，汤色鹅黄，鲜爽度极高"
-                }
-            ],
-            "⛰️ 福建产区": [
-                {
-                    名称: "武夷岩茶",
-                    类别: "乌龙茶",
-                    产地细节: "武夷山丹霞地貌核心景区",
-                    特点: "岩骨花香，绿叶红镶边",
-                    历史: "明代创制，清代成为贡茶",
-                    简介: "大红袍母树现存6株，树龄逾350年"
-                }
-            ]
-        },
-        "🇯🇵 日本": {
-            "🗻 静冈产区": [
-                {
-                    名称: "静冈玉露",
-                    类别: "绿茶",
-                    产地细节: "富士山南麓朝露茶田",
-                    特点: "海苔香明显，鲜爽度极高",
-                    历史: "1835年由山本德翁创制",
-                    简介: "覆盖栽培20天以上，氨基酸含量超普通茶3倍"
-                }
-            ]
-        }
-    },
-    非洲: {
-        "🇰🇪 肯尼亚": {
-            "☀️ 内罗毕产区": [
-                {
-                    名称: "肯尼亚红碎茶",
-                    类别: "红茶",
-                    产地细节: "赤道高原火山灰土壤",
-                    特点: "汤色红艳，浓强鲜爽",
-                    历史: "1903年引进阿萨姆茶种",
-                    简介: "CTC工艺代表，占全球红茶出口量21%"
-                }
-            ]
-        }
-    }
-};
-
-// 初始化导航
-function 初始化导航() {
-    const 大洲列表 = Object.keys(茶叶数据);
-    document.getElementById('大洲导航').innerHTML = 大洲列表
-        .map(大洲 => `<div class="nav-item" onclick="加载国家('${大洲}')">🌍 ${大洲}</div>`).join('');
-}
-
-function 加载国家(大洲) {
-    const 国家列表 = Object.keys(茶叶数据[大洲]);
-    document.getElementById('国家导航').innerHTML = 国家列表
-        .map(国家 => `<div class="nav-item" onclick="加载产区('${大洲}','${国家}')">${国家}</div>`).join('');
-}
-
-function 加载产区(大洲, 国家) {
-    const 产区列表 = Object.keys(茶叶数据[大洲][国家]);
-    document.getElementById('产区导航').innerHTML = 产区列表
-        .map(产区 => `<div class="nav-item" onclick="显示茶品('${大洲}','${国家}','${产区}')">${产区}</div>`).join('');
-}
-
-function 显示茶品(大洲, 国家, 产区) {
-    const 茶品列表 = 茶叶数据[大洲][国家][产区];
-    document.getElementById('内容展示区').innerHTML = `
-        <h2>${产区.replace(/^.*? /,'')} 特色茶品</h2>
-        <div class="tea-grid">
-            ${茶品列表.map(茶 => `
-                <div class="tea-card">
-                    <h3>${茶.名称}</h3>
-                    <p><strong>🍃 类别：</strong>${茶.类别}</p>
-                    <p><strong>📍 产地：</strong>${茶.产地细节}</p>
-                    <p><strong>✨ 特点：</strong>${茶.特点}</p>
-                    <p><strong>📜 历史：</strong>${茶.历史}</p>
-                    <p><strong>📖 简介：</strong>${茶.简介}</p>
+    <div class="container">
+        <header>
+            <h1>茶禅明一味，谱法贯三乘</h1>
+        </header>
+        <div class="classification" id="classification">
+            <!-- 浙江省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>浙江省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 杭州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>杭州市</span>
+                    <span class="arrow">▶</span>
                 </div>
-            `).join('')}
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>西湖区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">西湖龙井</div>
+                        <div class="tea-item">九曲红梅</div>
+                        <div class="tea-item">狮峰龙井</div>
+                        <div class="tea-item">梅家坞龙井</div>
+                        <div class="tea-item">虎跑龙井</div>
+                        <div class="tea-item">云栖龙井</div>
+                        <div class="tea-item">灵隐龙井</div>
+                        <div class="tea-item">龙坞龙井</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>余杭区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">径山茶</div>
+                        <div class="tea-item">余杭白茶</div>
+                        <div class="tea-item">鸬鸟毛峰</div>
+                        <div class="tea-item">百丈毛峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>富阳区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">富阳岩顶</div>
+                        <div class="tea-item">安顶云雾</div>
+                        <div class="tea-item">富春龙井</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>临安区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">天目青顶</div>
+                        <div class="tea-item">临安香雪</div>
+                        <div class="tea-item">东坑野茶</div>
+                    </div>
+                </div>
+                
+                <!-- 湖州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>湖州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>长兴县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">顾渚紫笋</div>
+                        <div class="tea-item">长兴白茶</div>
+                        <div class="tea-item">大唐贡茶</div>
+                        <div class="tea-item">水口紫笋</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>安吉县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">安吉白茶</div>
+                        <div class="tea-item">安吉黄金芽</div>
+                        <div class="tea-item">安吉白片</div>
+                        <div class="tea-item">龙王山白茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>德清县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">莫干黄芽</div>
+                        <div class="tea-item">莫干云雾</div>
+                    </div>
+                </div>
+                
+                <!-- 绍兴市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>绍兴市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>新昌县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">大佛龙井</div>
+                        <div class="tea-item">新昌雪芽</div>
+                        <div class="tea-item">望海云雾</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>嵊州市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">越乡龙井</div>
+                        <div class="tea-item">嵊州珠茶</div>
+                        <div class="tea-item">泉岗辉白</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>诸暨市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">西施银芽</div>
+                        <div class="tea-item">石笕茶</div>
+                    </div>
+                </div>
+                
+                <!-- 宁波市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>宁波市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>宁海县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">望海茶</div>
+                        <div class="tea-item">宁海白茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>余姚市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">瀑布仙茗</div>
+                        <div class="tea-item">四明龙尖</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>奉化区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">奉化曲毫</div>
+                        <div class="tea-item">雪窦山茶</div>
+                    </div>
+                </div>
+                
+                <!-- 温州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>温州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>泰顺县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">泰顺三杯香</div>
+                        <div class="tea-item">泰顺云雾</div>
+                        <div class="tea-item">泰顺红茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>永嘉县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">乌牛早</div>
+                        <div class="tea-item">永嘉龙井</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>平阳县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">平阳黄汤</div>
+                        <div class="tea-item">平阳早香茶</div>
+                    </div>
+                </div>
+                
+                <!-- 丽水市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>丽水市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>松阳县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">松阳银猴</div>
+                        <div class="tea-item">松阳香茶</div>
+                        <div class="tea-item">松阳白茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>遂昌县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">遂昌银猴</div>
+                        <div class="tea-item">遂昌龙谷</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>景宁县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">惠明茶</div>
+                        <div class="tea-item">景宁白茶</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 福建省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>福建省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 南平市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>南平市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>武夷山市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">大红袍</div>
+                        <div class="tea-item">正山小种</div>
+                        <div class="tea-item">金骏眉</div>
+                        <div class="tea-item">武夷肉桂</div>
+                        <div class="tea-item">白鸡冠</div>
+                        <div class="tea-item">铁罗汉</div>
+                        <div class="tea-item">水金龟</div>
+                        <div class="tea-item">半天腰</div>
+                        <div class="tea-item">武夷水仙</div>
+                        <div class="tea-item">武夷奇种</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>政和县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">政和白茶</div>
+                        <div class="tea-item">政和工夫</div>
+                        <div class="tea-item">政和牡丹王</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>建瓯市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">建瓯水仙</div>
+                        <div class="tea-item">建瓯乌龙</div>
+                        <div class="tea-item">北苑贡茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>建阳区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">建阳白茶</div>
+                        <div class="tea-item">建阳水仙</div>
+                    </div>
+                </div>
+                
+                <!-- 泉州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>泉州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>安溪县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">铁观音</div>
+                        <div class="tea-item">黄金桂</div>
+                        <div class="tea-item">本山茶</div>
+                        <div class="tea-item">毛蟹茶</div>
+                        <div class="tea-item">梅占茶</div>
+                        <div class="tea-item">大叶乌龙</div>
+                        <div class="tea-item">安溪色种</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>永春县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">永春佛手</div>
+                        <div class="tea-item">永春水仙</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>德化县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">德化乌龙</div>
+                        <div class="tea-item">德化红茶</div>
+                    </div>
+                </div>
+                
+                <!-- 宁德市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>宁德市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>福鼎市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">白毫银针</div>
+                        <div class="tea-item">白牡丹</div>
+                        <div class="tea-item">寿眉</div>
+                        <div class="tea-item">贡眉</div>
+                        <div class="tea-item">福鼎大白茶</div>
+                        <div class="tea-item">福鼎大毫茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>福安市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">坦洋工夫</div>
+                        <div class="tea-item">福安大白茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>寿宁县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">寿宁高山茶</div>
+                        <div class="tea-item">寿宁乌龙</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>周宁县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">周宁云雾</div>
+                        <div class="tea-item">周宁红茶</div>
+                    </div>
+                </div>
+                
+                <!-- 三明市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>三明市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>大田县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">大田高山茶</div>
+                        <div class="tea-item">大田美人茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>尤溪县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">尤溪红茶</div>
+                        <div class="tea-item">尤溪绿茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>沙县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">沙县乌龙</div>
+                        <div class="tea-item">沙县红边</div>
+                    </div>
+                </div>
+                
+                <!-- 龙岩市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>龙岩市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>漳平市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">漳平水仙</div>
+                        <div class="tea-item">漳平乌龙</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>武平县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">武平绿茶</div>
+                        <div class="tea-item">武平红茶</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 云南省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>云南省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 普洱市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>普洱市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>思茅区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">普洱生茶</div>
+                        <div class="tea-item">普洱熟茶</div>
+                        <div class="tea-item">思茅古树</div>
+                        <div class="tea-item">思茅银毫</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>澜沧县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">景迈古树茶</div>
+                        <div class="tea-item">邦崴古树茶</div>
+                        <div class="tea-item">芒景古树茶</div>
+                        <div class="tea-item">澜沧古茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>宁洱县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">宁洱古树</div>
+                        <div class="tea-item">困鹿山茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>景谷县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">景谷大白茶</div>
+                        <div class="tea-item">秧塔大白茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>墨江县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">墨江古树</div>
+                        <div class="tea-item">迷帝贡茶</div>
+                    </div>
+                </div>
+                
+                <!-- 临沧市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>临沧市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>双江县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">冰岛茶</div>
+                        <div class="tea-item">冰岛老寨</div>
+                        <div class="tea-item">冰岛南迫</div>
+                        <div class="tea-item">冰岛地界</div>
+                        <div class="tea-item">冰岛糯伍</div>
+                        <div class="tea-item">冰岛坝歪</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>凤庆县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">滇红</div>
+                        <div class="tea-item">凤庆滇红</div>
+                        <div class="tea-item">凤庆古树</div>
+                        <div class="tea-item">凤庆大叶种</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>永德县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">永德古树</div>
+                        <div class="tea-item">忙肺茶</div>
+                        <div class="tea-item">梅子箐茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>云县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">白莺山茶</div>
+                        <div class="tea-item">大朝山茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>耿马县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">耿马古树</div>
+                        <div class="tea-item">勐撒茶</div>
+                    </div>
+                </div>
+                
+                <!-- 西双版纳州 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>西双版纳州</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>勐海县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">老班章</div>
+                        <div class="tea-item">新班章</div>
+                        <div class="tea-item">布朗山</div>
+                        <div class="tea-item">老曼峨</div>
+                        <div class="tea-item">贺开古树</div>
+                        <div class="tea-item">班盆古树</div>
+                        <div class="tea-item">勐宋古树</div>
+                        <div class="tea-item">南糯山茶</div>
+                        <div class="tea-item">帕沙古树</div>
+                        <div class="tea-item">巴达山茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>勐腊县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">易武茶</div>
+                        <div class="tea-item">倚邦茶</div>
+                        <div class="tea-item">蛮砖茶</div>
+                        <div class="tea-item">革登茶</div>
+                        <div class="tea-item">莽枝茶</div>
+                        <div class="tea-item">攸乐茶</div>
+                        <div class="tea-item">曼松贡茶</div>
+                        <div class="tea-item">刮风寨</div>
+                        <div class="tea-item">麻黑古树</div>
+                        <div class="tea-item">落水洞</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>景洪市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">基诺山茶</div>
+                        <div class="tea-item">勐宋小树</div>
+                    </div>
+                </div>
+                
+                <!-- 保山市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>保山市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>昌宁县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">昌宁红茶</div>
+                        <div class="tea-item">昌宁古树</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>腾冲市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">腾冲古树</div>
+                        <div class="tea-item">高黎贡山茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>龙陵县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">龙陵古树</div>
+                        <div class="tea-item">镇安茶</div>
+                    </div>
+                </div>
+                
+                <!-- 大理州 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>大理州</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>南涧县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">南涧绿茶</div>
+                        <div class="tea-item">无量山茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>永平县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">永平古树</div>
+                        <div class="tea-item">博南山茶</div>
+                    </div>
+                </div>
+                
+                <!-- 德宏州 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>德宏州</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>梁河县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">梁河古树</div>
+                        <div class="tea-item">回龙茶</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 安徽省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>安徽省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 黄山市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>黄山市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>歙县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">黄山毛峰</div>
+                        <div class="tea-item">歙县大方</div>
+                        <div class="tea-item">歙县珠兰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>休宁县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">松萝茶</div>
+                        <div class="tea-item">休宁屯绿</div>
+                        <div class="tea-item">新安源银毫</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>祁门县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">祁门红茶</div>
+                        <div class="tea-item">祁门安茶</div>
+                        <div class="tea-item">祁门毛峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>黟县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">黟山雀舌</div>
+                        <div class="tea-item">石墨茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>徽州区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">徽州白茶</div>
+                        <div class="tea-item">富溪毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 六安市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>六安市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>金寨县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">六安瓜片</div>
+                        <div class="tea-item">金寨翠眉</div>
+                        <div class="tea-item">金寨红茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>霍山县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">霍山黄芽</div>
+                        <div class="tea-item">霍山黄大茶</div>
+                        <div class="tea-item">霍山翠芽</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>舒城县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">舒城小兰花</div>
+                        <div class="tea-item">舒城兰花</div>
+                    </div>
+                </div>
+                
+                <!-- 安庆市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>安庆市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>岳西县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">岳西翠兰</div>
+                        <div class="tea-item">岳西炒青</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>太湖县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">天华谷尖</div>
+                        <div class="tea-item">太湖炒青</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>潜山市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">天柱剑毫</div>
+                        <div class="tea-item">天柱弦月</div>
+                    </div>
+                </div>
+                
+                <!-- 宣城市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>宣城市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>泾县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">泾县特尖</div>
+                        <div class="tea-item">涌溪火青</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>旌德县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">旌德白茶</div>
+                        <div class="tea-item">旌德毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 池州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>池州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>石台县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">石台香芽</div>
+                        <div class="tea-item">雾里青</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>东至县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">东至云尖</div>
+                        <div class="tea-item">东至红茶</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 四川省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>四川省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 雅安市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>雅安市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>名山区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">蒙顶甘露</div>
+                        <div class="tea-item">蒙顶黄芽</div>
+                        <div class="tea-item">蒙顶石花</div>
+                        <div class="tea-item">蒙顶毛峰</div>
+                        <div class="tea-item">蒙顶红茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>雨城区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">雅安藏茶</div>
+                        <div class="tea-item">雅安毛峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>荥经县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">荥经藏茶</div>
+                        <div class="tea-item">荥经毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 乐山市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>乐山市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>峨眉山市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">峨眉雪芽</div>
+                        <div class="tea-item">竹叶青</div>
+                        <div class="tea-item">峨眉红茶</div>
+                        <div class="tea-item">峨眉毛峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>马边县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">马边绿茶</div>
+                        <div class="tea-item">马边云雾</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>犍为县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">犍为茉莉花茶</div>
+                        <div class="tea-item">犍为红茶</div>
+                    </div>
+                </div>
+                
+                <!-- 宜宾市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>宜宾市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>筠连县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">筠连红茶</div>
+                        <div class="tea-item">筠连绿茶</div>
+                        <div class="tea-item">苦丁茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>高县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">高县早白尖</div>
+                        <div class="tea-item">高县红茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>屏山县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">屏山炒青</div>
+                        <div class="tea-item">屏山毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 成都市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>成都市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>蒲江县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">蒲江雀舌</div>
+                        <div class="tea-item">蒲江毛峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>邛崃市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">邛崃黑茶</div>
+                        <div class="tea-item">邛崃毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 达州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>达州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>万源市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">巴山雀舌</div>
+                        <div class="tea-item">万源富硒茶</div>
+                    </div>
+                </div>
+                
+                <!-- 巴中市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>巴中市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>通江县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">通江银耳茶</div>
+                        <div class="tea-item">通江毛峰</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 江苏省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>江苏省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 苏州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>苏州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>吴中区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">碧螺春</div>
+                        <div class="tea-item">洞庭碧螺</div>
+                        <div class="tea-item">西山碧螺</div>
+                    </div>
+                </div>
+                
+                <!-- 南京市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>南京市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>雨花台区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">雨花茶</div>
+                        <div class="tea-item">南京雨花</div>
+                    </div>
+                </div>
+                
+                <!-- 无锡市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>无锡市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>宜兴市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">阳羡雪芽</div>
+                        <div class="tea-item">宜兴红茶</div>
+                    </div>
+                </div>
+                
+                <!-- 常州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>常州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>溧阳市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">溧阳白茶</div>
+                        <div class="tea-item">南山寿眉</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>金坛区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">金坛雀舌</div>
+                        <div class="tea-item">茅山青峰</div>
+                    </div>
+                </div>
+                
+                <!-- 镇江市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>镇江市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>句容市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">茅山长青</div>
+                        <div class="tea-item">句容白茶</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 湖南省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>湖南省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 益阳市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>益阳市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>安化县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">安化黑茶</div>
+                        <div class="tea-item">千两茶</div>
+                        <div class="tea-item">茯砖茶</div>
+                        <div class="tea-item">黑砖茶</div>
+                        <div class="tea-item">花砖茶</div>
+                        <div class="tea-item">天尖茶</div>
+                        <div class="tea-item">贡尖茶</div>
+                        <div class="tea-item">生尖茶</div>
+                    </div>
+                </div>
+                
+                <!-- 岳阳市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>岳阳市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>君山区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">君山银针</div>
+                        <div class="tea-item">君山毛尖</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>临湘市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">临湘黑茶</div>
+                        <div class="tea-item">临湘青砖</div>
+                    </div>
+                </div>
+                
+                <!-- 长沙市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>长沙市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>长沙县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">金井毛尖</div>
+                        <div class="tea-item">高桥银峰</div>
+                    </div>
+                </div>
+                
+                <!-- 张家界市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>张家界市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>桑植县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">桑植白茶</div>
+                        <div class="tea-item">桑植毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 湘西州 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>湘西州</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>古丈县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">古丈毛尖</div>
+                        <div class="tea-item">古丈红茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>保靖县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">保靖黄金茶</div>
+                        <div class="tea-item">保靖毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 郴州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>郴州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>桂东县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">桂东玲珑茶</div>
+                        <div class="tea-item">桂东毛尖</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>资兴市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">东江湖茶</div>
+                        <div class="tea-item">资兴毛尖</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 广东省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>广东省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 潮州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>潮州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>潮安区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">凤凰单丛</div>
+                        <div class="tea-item">岭头单丛</div>
+                        <div class="tea-item">蜜兰香</div>
+                        <div class="tea-item">鸭屎香</div>
+                        <div class="tea-item">黄枝香</div>
+                        <div class="tea-item">芝兰香</div>
+                        <div class="tea-item">桂花香</div>
+                        <div class="tea-item">玉兰香</div>
+                        <div class="tea-item">杏仁香</div>
+                        <div class="tea-item">姜花香</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>饶平县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">饶平单丛</div>
+                        <div class="tea-item">岭头白叶</div>
+                    </div>
+                </div>
+                
+                <!-- 梅州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>梅州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>大埔县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">西岩乌龙</div>
+                        <div class="tea-item">大埔绿茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>丰顺县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">马图绿茶</div>
+                        <div class="tea-item">丰顺乌龙</div>
+                    </div>
+                </div>
+                
+                <!-- 清远市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>清远市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>英德市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">英德红茶</div>
+                        <div class="tea-item">英红九号</div>
+                        <div class="tea-item">英德绿茶</div>
+                    </div>
+                </div>
+                
+                <!-- 河源市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>河源市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>东源县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">东源仙湖茶</div>
+                        <div class="tea-item">东源绿茶</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 广西壮族自治区 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>广西壮族自治区</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 梧州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>梧州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>苍梧县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">六堡茶</div>
+                        <div class="tea-item">苍梧毛尖</div>
+                        <div class="tea-item">苍梧红茶</div>
+                    </div>
+                </div>
+                
+                <!-- 贺州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>贺州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>昭平县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">昭平绿茶</div>
+                        <div class="tea-item">昭平红茶</div>
+                        <div class="tea-item">昭平毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 桂林市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>桂林市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>灵川县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">灵川毛尖</div>
+                        <div class="tea-item">灵川云雾</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>龙胜县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">龙胜龙脊茶</div>
+                        <div class="tea-item">龙胜红茶</div>
+                    </div>
+                </div>
+                
+                <!-- 百色市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>百色市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>凌云县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">凌云白毫</div>
+                        <div class="tea-item">凌云毛峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>西林县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">西林毛尖</div>
+                        <div class="tea-item">西林红茶</div>
+                    </div>
+                </div>
+                
+                <!-- 柳州市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>柳州市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>三江县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">三江春</div>
+                        <div class="tea-item">三江红茶</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 贵州省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>贵州省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 遵义市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>遵义市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>湄潭县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">湄潭翠芽</div>
+                        <div class="tea-item">遵义红</div>
+                        <div class="tea-item">湄潭毛峰</div>
+                        <div class="tea-item">湄江翠片</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>凤冈县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">凤冈锌硒茶</div>
+                        <div class="tea-item">凤冈毛峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>余庆县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">余庆苦丁茶</div>
+                        <div class="tea-item">余庆绿茶</div>
+                    </div>
+                </div>
+                
+                <!-- 铜仁市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>铜仁市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>石阡县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">石阡苔茶</div>
+                        <div class="tea-item">石阡毛峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>印江县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">梵净山翠峰</div>
+                        <div class="tea-item">印江毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 黔南州 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>黔南州</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>都匀市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">都匀毛尖</div>
+                        <div class="tea-item">都匀红茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>贵定县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">贵定云雾</div>
+                        <div class="tea-item">贵定毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 黔东南州 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>黔东南州</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>雷山县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">雷山银球茶</div>
+                        <div class="tea-item">雷公山茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>黎平县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">黎平香茶</div>
+                        <div class="tea-item">黎平毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 安顺市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>安顺市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>西秀区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">安顺毛峰</div>
+                        <div class="tea-item">安顺绿茶</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 湖北省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>湖北省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 宜昌市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>宜昌市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>五峰县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">五峰毛尖</div>
+                        <div class="tea-item">五峰绿茶</div>
+                        <div class="tea-item">采花毛尖</div>
+                        <div class="tea-item">五峰宜红</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>夷陵区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">峡州碧峰</div>
+                        <div class="tea-item">邓村绿茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>长阳县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">长阳毛尖</div>
+                        <div class="tea-item">长阳宜红</div>
+                    </div>
+                </div>
+                
+                <!-- 恩施州 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>恩施州</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>恩施市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">恩施玉露</div>
+                        <div class="tea-item">恩施富硒茶</div>
+                        <div class="tea-item">恩施毛尖</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>利川市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">利川红</div>
+                        <div class="tea-item">利川毛峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>鹤峰县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">鹤峰茶</div>
+                        <div class="tea-item">鹤峰宜红</div>
+                    </div>
+                </div>
+                
+                <!-- 十堰市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>十堰市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>竹溪县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">竹溪毛尖</div>
+                        <div class="tea-item">竹溪龙峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>竹山县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">圣水毛尖</div>
+                        <div class="tea-item">竹山绿茶</div>
+                    </div>
+                </div>
+                
+                <!-- 襄阳市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>襄阳市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>谷城县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">谷城玉皇剑</div>
+                        <div class="tea-item">谷城毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 黄冈市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>黄冈市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>英山县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">英山云雾</div>
+                        <div class="tea-item">英山毛尖</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 河南省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>河南省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 信阳市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>信阳市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>浉河区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">信阳毛尖</div>
+                        <div class="tea-item">信阳红</div>
+                        <div class="tea-item">车云山毛尖</div>
+                        <div class="tea-item">云雾山毛尖</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>光山县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">光山毛尖</div>
+                        <div class="tea-item">光山云雾</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>新县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">新县毛尖</div>
+                        <div class="tea-item">新县龙眼</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>商城县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">金刚碧绿</div>
+                        <div class="tea-item">商城毛尖</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>罗山县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">灵山剑峰</div>
+                        <div class="tea-item">罗山毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 南阳市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>南阳市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>桐柏县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">桐柏玉叶</div>
+                        <div class="tea-item">桐柏毛尖</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 江西省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>江西省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 上饶市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>上饶市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>婺源县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">婺源绿茶</div>
+                        <div class="tea-item">婺源茗眉</div>
+                        <div class="tea-item">婺源毛尖</div>
+                        <div class="tea-item">婺源仙芝</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>铅山县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">铅山河红</div>
+                        <div class="tea-item">铅山毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 九江市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>九江市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>庐山市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">庐山云雾</div>
+                        <div class="tea-item">庐山毛尖</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>修水县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">宁红茶</div>
+                        <div class="tea-item">双井绿</div>
+                    </div>
+                </div>
+                
+                <!-- 景德镇市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>景德镇市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>浮梁县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">浮梁茶</div>
+                        <div class="tea-item">浮梁毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 吉安市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>吉安市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>遂川县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">狗牯脑</div>
+                        <div class="tea-item">遂川毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 宜春市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>宜春市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>靖安县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">靖安白茶</div>
+                        <div class="tea-item">靖安毛尖</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 山东省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>山东省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 日照市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>日照市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>岚山区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">日照绿茶</div>
+                        <div class="tea-item">日照雪青</div>
+                        <div class="tea-item">日照毛峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>莒县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">莒县绿茶</div>
+                        <div class="tea-item">莒县毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 青岛市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>青岛市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>崂山区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">崂山绿茶</div>
+                        <div class="tea-item">崂山毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 临沂市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>临沂市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>莒南县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">莒南绿茶</div>
+                        <div class="tea-item">莒南毛峰</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>临沭县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">临沭绿茶</div>
+                        <div class="tea-item">临沭毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 泰安市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>泰安市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>泰山区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">泰山女儿茶</div>
+                        <div class="tea-item">泰山毛峰</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 陕西省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>陕西省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 汉中市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>汉中市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>西乡县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">西乡绿茶</div>
+                        <div class="tea-item">午子仙毫</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>勉县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">定军茗眉</div>
+                        <div class="tea-item">勉县毛尖</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>宁强县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">宁强雀舌</div>
+                        <div class="tea-item">宁强毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 安康市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>安康市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>紫阳县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">紫阳毛尖</div>
+                        <div class="tea-item">紫阳富硒茶</div>
+                    </div>
+                    
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>平利县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">平利女娲茶</div>
+                        <div class="tea-item">平利毛尖</div>
+                    </div>
+                </div>
+                
+                <!-- 商洛市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>商洛市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>商南县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">商南泉茗</div>
+                        <div class="tea-item">商南毛尖</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 重庆市 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>重庆市</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 永川区 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>永川区</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>永川区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">永川秀芽</div>
+                        <div class="tea-item">永川毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 南川区 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>南川区</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>南川区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">南川金佛玉翠</div>
+                        <div class="tea-item">南川毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 万州区 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>万州区</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>万州区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">太白银针</div>
+                        <div class="tea-item">万州毛峰</div>
+                    </div>
+                </div>
+                
+                <!-- 涪陵区 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>涪陵区</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>涪陵区</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">涪陵白茶</div>
+                        <div class="tea-item">涪陵毛峰</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 台湾省 -->
+            <div class="province" onclick="toggleItems(this)">
+                <span>台湾省</span>
+                <span class="arrow">▶</span>
+            </div>
+            <div class="content">
+                <!-- 南投县 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>南投县</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>南投县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">冻顶乌龙</div>
+                        <div class="tea-item">杉林溪茶</div>
+                        <div class="tea-item">梨山茶</div>
+                        <div class="tea-item">大禹岭茶</div>
+                        <div class="tea-item">阿里山茶</div>
+                    </div>
+                </div>
+                
+                <!-- 嘉义县 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>嘉义县</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>嘉义县</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">阿里山乌龙</div>
+                        <div class="tea-item">金萱茶</div>
+                        <div class="tea-item">翠玉茶</div>
+                    </div>
+                </div>
+                
+                <!-- 新北市 -->
+                <div class="city" onclick="toggleItems(this)">
+                    <span>新北市</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="content">
+                    <div class="county" onclick="toggleTeaItems(this)">
+                        <span>新北市</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="tea-items">
+                        <div class="tea-item">文山包种</div>
+                        <div class="tea-item">东方美人</div>
+                    </div>
+                </div>
+            </div>
         </div>
-    `;
-}
-
-// 增强版搜索功能
-document.getElementById('searchInput').addEventListener('input', function(e) {
-    const 关键词 = e.target.value.trim().toLowerCase();
-    const 所有茶卡 = document.querySelectorAll('.tea-card');
-    
-    所有茶卡.forEach(卡 => {
-        const 内容 = 卡.innerText.toLowerCase();
-        const 显示状态 = 关键词 ? 内容.includes(关键词) : true;
-        卡.style.display = 显示状态 ? 'block' : 'none';
         
-        if(关键词 && 显示状态) {
-            const regex = new RegExp(`(${关键词})`, 'gi');
-            卡.innerHTML = 卡.innerHTML.replace(regex, '<span class="highlight">$1</span>');
-        }
-    });
-});
+        <footer>
+            <p>© chapu.org 茶禅明一味，谱法贯三乘</p>
+        </footer>
+    </div>
 
-// 初始化
-初始化导航();
-</script>
+    <script>
+        function toggleItems(element) {
+            const content = element.nextElementSibling;
+            const arrow = element.querySelector('.arrow');
+            
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                arrow.classList.remove('rotate');
+            } else {
+                content.style.display = 'block';
+                arrow.classList.add('rotate');
+            }
+        }
+        
+        function toggleTeaItems(element) {
+            const teaItems = element.nextElementSibling;
+            const arrow = element.querySelector('.arrow');
+            
+            if (teaItems.style.display === 'flex') {
+                teaItems.style.display = 'none';
+                arrow.classList.remove('rotate');
+            } else {
+                teaItems.style.display = 'flex';
+                arrow.classList.add('rotate');
+            }
+        }
+        
+        function searchTea() {
+            const input = document.getElementById('search');
+            const filter = input.value.toUpperCase();
+            const teaItems = document.querySelectorAll('.tea-item');
+            
+            teaItems.forEach(item => {
+                const text = item.textContent || item.innerText;
+                if (text.toUpperCase().indexOf(filter) > -1) {
+                    item.style.display = 'inline-block';
+                    
+                    // 显示所有父级
+                    let parent = item.parentElement;
+                    while (parent && !parent.classList.contains('classification')) {
+                        if (parent.classList.contains('tea-items')) {
+                            parent.style.display = 'flex';
+                            const county = parent.previousElementSibling;
+                            county.querySelector('.arrow').classList.add('rotate');
+                            
+                            // 显示市级
+                            const cityContent = county.parentElement;
+                            cityContent.style.display = 'block';
+                            const city = cityContent.previousElementSibling;
+                            city.querySelector('.arrow').classList.add('rotate');
+                            
+                            // 显示省级
+                            const provinceContent = city.parentElement.parentElement;
+                            provinceContent.style.display = 'block';
+                            const province = provinceContent.previousElementSibling;
+                            province.querySelector('.arrow').classList.add('rotate');
+                        }
+                        parent = parent.parentElement;
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+		;
+    </script>
 </body>
 </html>
