@@ -1,0 +1,18 @@
+window.TeaData = window.TeaData || {};
+window.TeaData.china = window.TeaData.china || {};
+
+window.TeaData.china['shanghai'] = [
+  {
+    id: 'chongming-dao-cha', name: '崇明岛茶', nameEn: 'Chongming Island Green Tea (Shanghai)',
+    category: '绿茶', subCategories: ['炒青绿茶'],
+    continent: '亚洲', country: '中国', province: '上海市', city: '上海市', district: '崇明区',
+    description: '崇明岛是长江入海口的世界最大冲积岛,也是上海唯一的产茶区。崇明岛上的茶园得益于长江淡水和东海海风交汇的独特环境,茶叶带有微微的"海岛咸香"。外形紧细,色泽灰绿。冲泡后豆香中带着一丝难以名状的海洋气息。中国最"东"的茶园——长江入海处的绿色哨兵。',
+    history: '崇明岛种茶始于1980年代。这座长江泥沙冲积出来的年轻岛屿,土壤和气候与传统茶区截然不同。崇明岛茶产量极小——全岛茶园不过数百亩,是上海本土唯一出产的茶叶。',
+    originDetail: '崇明岛,海拔极低(2-4米)。长江冲积土——沙质性土壤,排水良好但肥力不如传统茶区。海风、江风交替吹拂,茶树在这"咸淡水"交界处生长。',
+    cultivars: '以鸠坑种和福鼎大白茶为主。北种南移——鸠坑种在崇明岛的生长表现不错。',
+    production: '采一芽一二叶,炒青工艺。崇明岛茶产量稀少,多被上海本地市场消化。物以稀为贵——"上海本土茶"的噱头不亚于品质本身。',
+    characteristics: '紧细灰绿。清鲜的豆香和微妙的"海岛气息"。汤色黄绿明亮。滋味清爽——长江入海处的清流滋味。中国最东端的产茶区——崇明岛的故事,在每一片茶叶中。',
+    tags: ['崇明岛', '上海', '长江入海口', '海岛茶', '最东端'],
+    routes: []
+  }
+];
