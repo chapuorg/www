@@ -3,9 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>茶谱 · 全球茶叶百科全书</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- SEO Meta Tags -->
+  <title>茶谱 chapu.org - 探索全球茶叶、古老茶路与历史茶馆</title>
+  <meta name="description" content="茶谱是一个收录全球2000+茶叶品种、15条历史茶路、90+历史茶馆的茶叶百科网站。探索茶马古道、万里茶道，学习茶知识，品味茶文化。">
+  <meta name="keywords" content="茶叶,茶文化,茶道,茶馆,茶路,茶马古道,万里茶道,茶知识,茶叶百科,品茶,茶艺,绿茶,红茶,普洱茶,乌龙茶,白茶,黑茶,花草茶,茶产地,茶历史,古道">
+  <meta name="author" content="茶谱 chapu.org">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://chapu.org/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chapu.org/">
+  <meta property="og:title" content="茶谱 - 探索全球茶叶、古老茶路与历史茶馆">
+  <meta property="og:description" content="收录全球2000+茶叶品种、15条历史茶路、90+历史茶馆。茶马古道、万里茶道、唐代煎茶、日本茶道，一站了解全球茶文化。">
+  <meta property="og:image" content="https://chapu.org/og-image.png">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:site_name" content="茶谱 chapu.org">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://chapu.org/">
+  <meta name="twitter:title" content="茶谱 - 探索全球茶叶、古老茶路与历史茶馆">
+  <meta name="twitter:description" content="收录全球2000+茶叶品种、15条历史茶路、90+历史茶馆。探索茶文化，从这里开始。">
+  <meta name="twitter:image" content="https://chapu.org/og-image.png">
+  
+  <!-- Geo Tags -->
+  <meta name="geo.region" content="CN">
+  <meta name="geo.placename" content="茶谱">
+  
+  <!-- AI 爬虫优化 -->
+  <meta name="ai-content-declaration" content="human-created">
+  <meta name="generator" content="茶谱 chapu.org - 茶叶知识平台">
+  
+  <!-- Favicon - Emoji图标 -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80' x='50%' text-anchor='middle'>🍵</text></svg>">
+  
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "茶谱",
+    "alternateName": "chapu.org",
+    "url": "https://chapu.org",
+    "description": "探索全球茶叶、古老茶路与历史茶馆的茶叶百科网站",
+    "keywords": "茶叶,茶文化,茶道,茶馆,茶路,茶马古道,万里茶道",
+    "author": {
+      "@type": "Organization",
+      "name": "茶谱 chapu.org"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://chapu.org/#search-{searchTerm}",
+      "query-input": "required name=searchTerm"
+    }
+  }
+  </script>
+  
+  <!-- 茶叶数据集结构化数据 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "茶谱全球茶叶数据库",
+    "description": "包含全球2000+茶叶品种、15条历史茶路、90+历史茶馆的茶叶百科数据集",
+    "url": "https://chapu.org",
+    "keywords": ["茶叶", "茶文化", "茶道", "茶馆", "茶路", "茶马古道", "万里茶道", "普洱茶", "龙井茶", "大红袍", "铁观音", "碧螺春", "大吉岭红茶", "抹茶"],
+    "creator": {
+      "@type": "Organization",
+      "name": "茶谱 chapu.org"
+    },
+    "datePublished": "2025-01-01",
+    "dateModified": "2026-05-23"
+  }
+  </script>
+  
+  <!-- BreadcrumbList 结构化数据 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://chapu.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "中国茶叶",
+        "item": "https://chapu.org/#china"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "茶路",
+        "item": "https://chapu.org/#routes"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "茶馆",
+        "item": "https://chapu.org/#teahouses"
+      }
+    ]
+  }
+  </script>
+  
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 </head>
 <body>
   <header class="site-header">
@@ -14,22 +124,25 @@
         <span class="logo-icon">🍵</span>
         <span>茶谱</span>
       </a>
-      <nav class="header-nav">
+      <nav class="header-nav" role="navigation" aria-label="主导航">
         <a href="#" id="nav-china">🐉 中国</a>
         <a href="#" id="nav-world">🌍 世界</a>
-        <a href="#" id="nav-varieties">🌿 品种</a>
+        <a href="#" id="nav-varieties">🌿 茶类</a>
         <a href="#" id="nav-routes">🛤️ 茶路</a>
         <a href="#" id="nav-teahouses">🏠 茶馆</a>
         <a href="#" id="nav-tags">🏷️ 标签</a>
       </nav>
       <div class="header-actions">
+        <button class="header-btn" id="menu-toggle" title="菜单">☰</button>
         <a class="header-btn" id="nav-search" title="搜索" href="#search">🔍</a>
         <button class="header-btn" id="theme-btn" title="切换主题">🌙</button>
       </div>
     </div>
   </header>
 
-  <main class="main-content" id="main-content">
+  <div class="menu-overlay" id="menu-overlay"></div>
+
+  <main class="main-content" id="main-content" role="main">
     <div class="container" style="text-align:center;padding:80px 20px;">
       <div style="font-size:4rem;">🍵</div>
       <p style="color:var(--text-muted);margin-top:16px;">正在加载全球茶叶数据...</p>
@@ -38,11 +151,11 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p style="margin-top:4px;">© 2015-2026 茶谱 chapu.org 品茶叶，泡茶馆，走茶路</p>
+      <p style="margin-top:4px;">© 2015-2026 茶谱 chapu.org 品茶汤，泡茶馆，走茶路</p>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="app.js"></script>
 </body>
 </html>

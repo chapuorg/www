@@ -1,0 +1,58 @@
+# robots.txt for chapu.org
+# 茶谱 - 探索全球茶叶、古老茶路与历史茶馆
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://chapu.org/sitemap.xml
+
+# Crawl-delay (optional, be considerate to the server)
+Crawl-delay: 1
+
+# Disallow unnecessary files
+Disallow: /_*
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: FacebookExternalHit
+Allow: /
+
+# AI Bot (per user request)
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-bot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# AI content declaration
+# All content on this site is human-created by the chapu.org team
