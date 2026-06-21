@@ -1,0 +1,62 @@
+# 茶谱 chapu.org
+> 探索全球茶叶、古老茶路与历史茶馆的茶叶百科网站。收录647款茶叶品种、26条历史茶路、139家历史茶馆。
+
+## 核心页面
+- https://chapu.org/: 首页 - 今日推荐茶路/茶馆，全球茶叶数据统计
+- https://chapu.org/?page=china: 中国茶叶数据库，按省份浏览
+- https://chapu.org/?page=world: 世界茶叶数据库，按国家浏览
+- https://chapu.org/?page=varieties: 茶叶分类 - 绿茶、红茶、乌龙茶、白茶、黄茶、黑茶、普洱茶、花茶、调味茶、代茶类
+- https://chapu.org/?page=routes: 历史茶路 - 茶马古道、万里茶道、海上茶叶之路等
+- https://chapu.org/?page=teahouses: 全球历史茶馆
+- https://chapu.org/?page=tags: 茶叶标签云
+- https://chapu.org/?page=search: 全文搜索
+
+## 茶路（26条）
+- https://chapu.org/?page=route&id=tea-horse-road: 茶马古道 - 滇藏川藏茶叶贸易通道
+- https://chapu.org/?page=route&id=great-tea-road: 万里茶道 - 中俄茶叶贸易之路
+- https://chapu.org/?page=route&id=maritime-tea-route: 海上茶叶之路
+- https://chapu.org/?page=route&id=silk-road-tea: 丝绸之路茶叶贸易
+- https://chapu.org/?page=route&id=clipper-tea-race: 快船运茶竞赛
+- https://chapu.org/?page=route&id=voc-tea-route: 荷兰东印度公司茶叶航线
+- https://chapu.org/?page=route&id=ancient-tea-road: 茶马古道·川藏线
+- https://chapu.org/?page=route&id=kyoto-edo-cha-road: 京都-江户茶道之路
+- https://chapu.org/?page=route&id=persian-tea-road: 波斯茶路
+- https://chapu.org/?page=route&id=mate-road: 马黛茶之路
+- https://chapu.org/?page=route&id=korean-tea-road: 韩国茶道之路
+- https://chapu.org/?page=route&id=darjeeling-heritage: 大吉岭遗产茶路
+
+## 茶叶分类
+- https://chapu.org/?page=category&id=%E7%BB%BF%E8%8C%B6: 绿茶 - 中国产量最大的茶类
+- https://chapu.org/?page=category&id=%E7%BA%A2%E8%8C%B6: 红茶 - 全球消费量最大的茶类
+- https://chapu.org/?page=category&id=%E4%B9%8C%E9%BE%99%E8%8C%B6: 乌龙茶 - 半发酵茶
+- https://chapu.org/?page=category&id=%E7%99%BD%E8%8C%B6: 白茶 - 微发酵茶
+- https://chapu.org/?page=category&id=%E9%BB%84%E8%8C%B6: 黄茶 - 轻发酵茶
+- https://chapu.org/?page=category&id=%E9%BB%91%E8%8C%B6: 黑茶 - 后发酵茶
+- https://chapu.org/?page=category&id=%E6%99%AE%E6%B4%B1%E8%8C%B6: 普洱茶 - 云南特产
+- https://chapu.org/?page=category&id=%E8%8A%B1%E8%8C%B6: 花茶 - 熏制花茶
+- https://chapu.org/?page=category&id=%E8%B0%83%E5%91%B3%E8%8C%B6: 调味茶
+- https://chapu.org/?page=category&id=%E4%BB%A3%E8%8C%B6%E9%A1%9E: 代茶类
+
+## 中国茶叶产区
+- https://chapu.org/?page=province&id=%E6%B5%99%E6%B1%9F%E7%9C%81: 浙江 - 龙井茶故乡
+- https://chapu.org/?page=province&id=%E7%A6%8F%E5%BB%BA%E7%9C%81: 福建 - 乌龙茶与白茶发源地
+- https://chapu.org/?page=province&id=%E4%BA%91%E5%8D%97%E7%9C%81: 云南 - 普洱茶核心产区
+- https://chapu.org/?page=province&id=%E5%AE%89%E5%BE%BD%E7%9C%81: 安徽 - 黄山毛峰、六安瓜片
+- https://chapu.org/?page=province&id=%E5%8F%B0%E6%B9%BE%E7%9C%81: 台湾 - 高山乌龙茶
+- https://chapu.org/?page=province&id=%E5%9B%9B%E5%B7%9D%E7%9C%81: 四川 - 竹叶青、蒙顶甘露
+- https://chapu.org/?page=province&id=%E6%B9%96%E5%8D%97%E7%9C%81: 湖南 - 君山银针
+- https://chapu.org/?page=province&id=%E5%B9%BF%E4%B8%9C%E7%9C%81: 广东 - 凤凰单丛
+
+## 世界茶叶产区
+- https://chapu.org/?page=country&id=%E6%97%A5%E6%9C%AC: 日本茶 - 抹茶、煎茶、玉露
+- https://chapu.org/?page=country&id=%E5%8D%B0%E5%BA%A6: 印度茶 - 大吉岭、阿萨姆、尼尔吉里
+- https://chapu.org/?page=country&id=%E6%96%AF%E9%87%8C%E5%85%B0%E5%8D%A1: 斯里兰卡茶 - 锡兰红茶
+- https://chapu.org/?page=country&id=%E8%82%AF%E5%B0%BC%E4%BA%9A: 肯尼亚茶 - 非洲最大产茶国
+- https://chapu.org/?page=country&id=%E8%8B%B1%E5%9B%BD: 英国茶文化 - 下午茶传统
+- https://chapu.org/?page=country&id=%E5%9C%9F%E8%80%B3%E5%85%B6: 土耳其茶 - 世界人均消费第一
+- https://chapu.org/?page=country&id=%E9%9F%A9%E5%9B%BD: 韩国茶 - 茶礼文化
+- https://chapu.org/?page=country&id=%E6%91%A9%E6%B4%9B%E5%93%A5: 摩洛哥 - 薄荷茶文化
+
+## 可选
+- 所有数据均为公开信息整理，仅供学习参考
+- 搜索功能支持按名称、产地、标签、描述等多维度匹配

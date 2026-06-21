@@ -1,0 +1,66 @@
+# robots.txt for chapu.org
+# 茶谱 - 探索全球茶叶、古老茶路与历史茶馆
+
+# ===== 通用搜索引擎 =====
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# ===== AI 爬虫 =====
+# OpenAI ChatGPT / SearchGPT
+User-agent: GPTBot
+Allow: /
+Disallow: /scripts/
+
+# Anthropic Claude
+User-agent: anthropic-ai
+Allow: /
+Disallow: /scripts/
+
+# Google AI (Gemini)
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Apple AI
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl (用于 AI 训练数据)
+User-agent: CCBot
+Allow: /
+
+# ByteDance (豆包)
+User-agent: Bytespider
+Allow: /
+Crawl-delay: 2
+
+# Baidu (文心一言)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# 360
+User-agent: 360Spider
+Allow: /
+Crawl-delay: 2
+
+# Sogou
+User-agent: Sogou web spider
+Allow: /
+Crawl-delay: 2
+
+# Bing
+User-agent: bingbot
+Allow: /
+Crawl-delay: 1
+
+# ===== 禁止访问 =====
+Disallow: /scripts/
+Disallow: /_*
+
+# ===== Sitemap =====
+Sitemap: https://chapu.org/sitemap.xml
